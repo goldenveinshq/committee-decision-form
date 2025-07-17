@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="img-src * data: blob:; default-src 'self' 'unsafe-inline' 'unsafe-eval' *;">
+    <title>نموذج قرار تشكيل اللجان والفرق المدرسية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #004956 0%, #d4af37 100%);
+            color: #333;
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            border: 3px solid #004956;
+        }
+
+        header h1 {
+            color: #004956;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            color: #d4af37;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .form-container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            border: 2px solid #004956;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 2px solid #d4af37;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+
+        .section h2 {
+            color: #004956;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #d4af37;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #004956;
+            font-size: 20px;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 18px;
+            border: 2px solid #d4af37;
+            border-radius: 8px;
+            font-size: 22px;
+            transition: border-color 0.3s;
+            direction: rtl;
+            color: #004956;
+            font-weight: 600;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #004956;
+            box-shadow: 0 0 5px rgba(0,73,86,0.3);
+        }
+
+        .gender-options {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .gender-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 35px;
+            border: 3px solid #d4af37;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 22px;
+            font-weight: 600;
+            color: #004956;
+            background: #ffffff;
+        }
+
+        .gender-option:hover {
+            background: #d4af37;
+            color: #ffffff;
+        }
+
+        .gender-option input[type="radio"] {
+            width: auto;
+            margin: 0;
+            transform: scale(1.8);
+        }
+
+        /* 🔥 إصلاح مشكلة اللون الغامق - النص يصبح أبيض عند الاختيار */
+        .gender-option.selected {
+            background: #004956;
+            color: #ffffff !important; /* النص أبيض */
+            border-color: #004956;
+        }
+
+        .gender-option.selected input[type="radio"] {
+            accent-color: #ffffff;
+        }
+
+        .gender-option.selected label {
+            color: #ffffff !important; /* التأكد من أن النص أبيض */
+        }
+
+        .committee-selector select {
+            padding: 20px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #004956;
+            background: #ffffff;
+            border: 3px solid #d4af37;
+        }
+
+        .committee-selector select:focus {
+            border-color: #004956;
+        }
+
+        .committee-selector select option {
+            padding: 15px;
+            font-size: 18px;
+            color: #004956;
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .member-row {
+            display: grid;
+            grid-template-columns: 2fr 2fr 1.5fr auto;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #ffffff;
+            border-radius: 8px;
+            border: 2px solid #d4af37;
+            position: relative;
+        }
+
+        .member-row input,
+        .member-row select {
+            padding: 12px;
+            border: 2px solid #d4af37;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #004956;
+            text-align: center;
+        }
+
+        .member-row input:focus,
+        .member-row select:focus {
+            border-color: #004956;
+            outline: none;
+        }
+
+        .role-label {
+            background: #004956;
+            color: #ffffff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .add-member-btn {
+            background: #d4af37;
+            color: #004956;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 50%;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 15px auto;
+            display: block;
+            transition: all 0.3s;
+        }
+
+        .add-member-btn:hover {
+            background: #004956;
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        .remove-member-btn {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            background: #e74c3c;
+            color: #ffffff;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 50%;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .remove-member-btn:hover {
+            background: #c0392b;
+        }
+
+        .action-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .action-btn {
+            padding: 18px 45px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 0 10px;
+        }
+
+        .preview-btn {
+            background: linear-gradient(135deg, #004956, #d4af37);
+            color: #ffffff;
+        }
+
+        .preview-btn:hover {
+            background: linear-gradient(135deg, #d4af37, #004956);
+            transform: translateY(-2px);
+        }
+
+        .warning-message {
+            background: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #d4af37;
+            margin-top: 20px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .warning-message strong {
+            color: #004956;
+        }
+
+        .preview-container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            border: 2px solid #004956;
+        }
+
+        .pdf-preview {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .pdf-content {
+            width: 210mm;
+            height: 297mm;
+            background: #ffffff;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            font-family: 'Cairo', sans-serif;
+            font-size: 16px;
+            line-height: 1.8;
+            overflow: hidden;
+        }
+
+        .official-template {
+            background-image: url('template.png');
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            padding: 0;
+        }
+
+        /* 📍 موضع عنوان اللجنة - قابل للتحريك */
+        /* ⚠️ تنبيه: عند تعديل هذا الحجم، تأكد من تعديل نفس الحجم في قسم الطباعة */
+        .committee-name-area {
+            position: absolute;
+            top: 12mm;        /* 📝 المسافة من الأعلى - قابل للتعديل */
+            right: 56mm;      /* 📝 المسافة من اليمين - قابل للتعديل */
+            width: 95mm;      /* 📝 عرض المنطقة - قابل للتعديل */
+            height: 25mm;     /* 📝 ارتفاع المنطقة - قابل للتعديل */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;  /* 📝 حجم خط العنوان - يجب أن يطابق قسم الطباعة */
+            font-weight: 700;
+            color: #ffffff;
+            text-align: center;
+            padding: 3mm;
+            line-height: 1.2; /* 📝 تباعد السطور في العنوان - قابل للتعديل */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .document-content {
+            position: absolute;
+            top: 35mm;
+            left: 12mm;
+            right: 12mm;
+            bottom: 15mm;
+            overflow: hidden;
+        }
+
+        /* 🔥 تعديل حجم الخط والتباعد - مع التوسيط */
+        .legal-text {
+            background: rgba(255,255,255,0.97);
+            padding: 1mm;
+            border-radius: 3mm;
+            margin-bottom: 1mm;
+            font-size: 18px;        /* 📝 حجم الخط - قابل للتعديل */
+            line-height: 2.2;       /* 📝 التباعد بين السطور - قابل للتعديل */
+            color: #004956;
+            font-weight: 700;       /* 📝 سماكة الخط - قابل للتعديل */
+            text-align: center;     /* 🔥 توسيط النص */
+        }
+
+        .decision-text {
+            font-size: 18px;        /* 📝 حجم الخط - قابل للتعديل */
+            font-weight: 700;       /* 📝 سماكة الخط - قابل للتعديل */
+            color: #004956;
+            margin-bottom: 4mm;
+            text-align: center;     /* 🔥 توسيط النص */
+            background: rgba(255,255,255,0.97);
+            padding: 3mm;
+            border-radius: 3mm;
+            line-height: 1.8;       /* 📝 التباعد بين السطور - قابل للتعديل */
+        }
+
+        /* 📊 تنسيق الجدول - قابل للتخصيص */
+        .members-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 6mm;
+            background: rgba(255,255,255,0.98);
+            border-radius: 0 !important;
+            overflow: hidden;
+        }
+
+        .members-table th,
+        .members-table td {
+            border: 2px solid #004956;
+            padding: 4mm;           /* 📝 حجم الخانات - قابل للتعديل */
+            text-align: center;
+            font-size: 15px;        /* 📝 حجم خط الجدول - قابل للتعديل */
+            font-weight: 600;
+            line-height: 1.2;       /* 📝 تباعد السطور في الجدول - قابل للتعديل */
+            border-radius: 0 !important;
+        }
+
+        .members-table th {
+            background: #004956;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 16px;        /* 📝 حجم خط رأس الجدول - قابل للتعديل */
+            border-radius: 0 !important;
+        }
+
+        /* 🔥 تفتيح لون التظليل للجدول - محسن للطباعة */
+        .members-table tr:nth-child(even) {
+            background: #E8E8E8 !important; /* 🔥 لون رمادي أفتح للطباعة الجيدة */
+        }
+
+        .members-table tr:nth-child(odd) {
+            background: #ffffff !important; /* لون أبيض */
+        }
+
+/* 🔥 جدول اعتماد المدير - تنسيق محسن بدون إطار خارجي */
+.director-approval {
+    margin-top: 2mm;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+}
+
+.director-approval table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.director-approval td {
+    border: 2px solid #004956;     /* 🔥 إطار سميك للخلايا */
+    padding: 4mm;                  /* 🔥 صف كبير */
+    text-align: center;
+    font-weight: 700;
+    font-size: 15px;
+    color: #004956;
+    line-height: 1.3;
+}
+
+        .action-buttons {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .action-buttons h2 {
+            color: #004956;
+            margin-bottom: 15px;
+        }
+
+        .print-btn, .new-document-btn {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+
+        .print-btn {
+            background: linear-gradient(135deg, #004956, #d4af37);
+            color: #ffffff;
+        }
+
+        .new-document-btn {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: #ffffff;
+        }
+
+        .print-btn:hover, .new-document-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* ملاحظة الحفظ كـ PDF */
+        .pdf-note {
+            background: #e8f5e8;
+            color: #2d5a2d;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #28a745;
+            margin: 15px 0;
+            font-size: 16px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .pdf-note strong {
+            color: #004956;
+        }
+
+        .pdf-note .icon {
+            font-size: 18px;
+            margin-left: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 25px;
+            background: #004956;
+            color: #ffffff;
+            border-radius: 15px;
+            margin-top: 30px;
+            font-size: 16px;
+            border: 3px solid #d4af37;
+        }
+
+        .footer p {
+            margin: 8px 0;
+        }
+
+        .footer a {
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+            color: #ffffff;
+        }
+
+        /* تحسين عرض المعاينة للشاشة */
+        @media screen {
+            .preview-container {
+                page-break-inside: avoid;
+            }
+            
+            .pdf-content {
+                page-break-inside: avoid;
+                page-break-after: avoid;
+                page-break-before: avoid;
+            }
+        }
+
+        /* 🔥 تحسين الطباعة - مع تطبيق نفس التنسيق */
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+            
+            body {
+                background: #ffffff !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                font-size: 12px !important;
+            }
+            
+            .container {
+                margin: 0 !important;
+                padding: 0 !important;
+                background: #ffffff !important;
+                max-width: none !important;
+            }
+            
+            header,
+            .form-container,
+            .footer,
+            .action-buttons,
+            .action-buttons h2,
+            .print-btn,
+            .new-document-btn,
+            .pdf-note {
+                display: none !important;
+                visibility: hidden !important;
+            }
+            
+            .preview-container {
+                display: block !important;
+                background: #ffffff !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                border: none !important;
+                box-shadow: none !important;
+                page-break-inside: avoid !important;
+            }
+            
+            .pdf-preview {
+                background: #ffffff !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                border: none !important;
+                overflow: visible !important;
+            }
+            
+            .pdf-content {
+                width: 100% !important;
+                height: 100vh !important;
+                max-height: 297mm !important;
+                box-shadow: none !important;
+                page-break-inside: avoid !important;
+                page-break-after: avoid !important;
+                page-break-before: avoid !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            .official-template {
+                background-image: url('template.png') !important;
+                background-size: 100% 100% !important;
+                background-position: center !important;
+                background-repeat: no-repeat !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                width: 100% !important;
+                height: 100% !important;
+                page-break-inside: avoid !important;
+            }
+            
+            /* 🔥 تصحيح حجم عنوان اللجنة للطباعة */
+            /* ⚠️ تنبيه: هذا الحجم يجب أن يطابق حجم المعاينة العادية */
+            .committee-name-area {
+                color: #ffffff !important;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
+                font-size: 22px !important;      /* 🔥 مطابق لحجم المعاينة */
+                font-weight: 700 !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            .document-content {
+                top: 35mm !important;
+                left: 12mm !important;
+                right: 12mm !important;
+                bottom: 15mm !important;
+            }
+            
+            /* 🔥 تطبيق نفس التنسيق في الطباعة */
+            .legal-text {
+                font-size: 18px !important;      /* 🔥 نفس حجم الخط */
+                line-height: 2.2 !important;     /* 🔥 نفس التباعد */
+                font-weight: 700 !important;     /* 🔥 نفس السماكة */
+                text-align: center !important;   /* 🔥 نفس التوسيط */
+                padding: 1mm !important;
+                margin-bottom: 1mm !important;
+                background: rgba(255,255,255,0.98) !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            .decision-text {
+                font-size: 18px !important;      /* 🔥 نفس حجم الخط */
+                line-height: 1.8 !important;     /* 🔥 نفس التباعد */
+                font-weight: 700 !important;     /* 🔥 نفس السماكة */
+                text-align: center !important;   /* 🔥 نفس التوسيط */
+                padding: 3mm !important;
+                margin-bottom: 4mm !important;
+                background: rgba(255,255,255,0.98) !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            .members-table {
+                background: rgba(255,255,255,0.98) !important;
+                border-radius: 0 !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            .members-table th,
+            .members-table td {
+                font-size: 11px !important;
+                padding: 2mm !important;
+                line-height: 1.1 !important;
+                border: 1px solid #004956 !important;
+                border-radius: 0 !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            .members-table th {
+                background: #004956 !important;
+                color: #ffffff !important;
+                font-size: 12px !important;
+                font-weight: 700 !important;
+                border-radius: 0 !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            /* 🔥 تطبيق اللون الرمادي الأفتح في الطباعة */
+            .members-table tr:nth-child(even) {
+                background: #E8E8E8 !important;  /* 🔥 نفس اللون الأفتح */
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            .members-table tr:nth-child(odd) {
+                background: #ffffff !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+/* 🔥 جدول اعتماد المدير - تنسيق الطباعة */
+.director-approval {
+    margin-top: 2mm !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+}
+
+.director-approval table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+}
+
+.director-approval td {
+    border: 2px solid #004956 !important;  /* 🔥 إطار سميك مطابق */
+    padding: 4mm !important;                /* 🔥 حجم مناسب للطباعة */
+    text-align: center !important;
+    font-weight: 700 !important;
+    font-size: 13px !important;
+    color: #004956 !important;
+    line-height: 1.3 !important;
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    print-color-adjust: exact !important;
+}
+            
+            .document-content > div:last-child {
+                margin-top: 3mm !important;
+                font-size: 10px !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+
+        .member-row input[data-field="name"] {
+            text-align: center;
+            font-weight: 600;
+            font-size: 17px;
+            background: #f8f9fa;
+            border: 2px solid #004956;
+        }
+
+        .member-row input[data-field="name"]:focus {
+            background: #ffffff;
+            border-color: #d4af37;
+            box-shadow: 0 0 5px rgba(0,73,86,0.3);
+        }
+
+        .member-row select {
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .members-table th,
+        .members-table td {
+            border: 1px solid #004956;
+            padding: 2mm;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.2;
+            border-radius: 0 !important;
+        }
+
+        .members-table th {
+            background: #004956;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 2.5mm;
+            border-radius: 0 !important;
+        }
+
+        .members-table th:last-child,
+        .members-table td:last-child {
+            width: 30mm;
+            min-width: 30mm;
+        }
+
+        @media (max-width: 768px) {
+            .member-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gender-options {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .pdf-content {
+                width: 100%;
+                height: auto;
+                min-height: 297mm;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>نموذج قرار تشكيل اللجان والفرق المدرسية</h1>
+            <p>أنشئ قرارات تشكيل اللجان المدرسية بسهولة وسرعة</p>
+        </header>
+
+        <div class="form-container" id="formContainer">
+            <!-- معلومات المدرسة -->
+            <div class="section">
+                <h2>📝 معلومات المدرسة</h2>
+                <div class="input-group">
+                    <label for="schoolName">اسم المدرسة:</label>
+                    <input type="text" id="schoolName" placeholder="اكتب اسم المدرسة">
+                </div>
+                <div class="input-group">
+                    <label>نوع المدرسة:</label>
+                    <div class="gender-options">
+                        <div class="gender-option" onclick="selectGender('boys')">
+                            <input type="radio" name="schoolGender" value="boys" id="boys">
+                            <label for="boys">مدرسة بنين</label>
+                        </div>
+                        <div class="gender-option" onclick="selectGender('girls')">
+                            <input type="radio" name="schoolGender" value="girls" id="girls">
+                            <label for="girls">مدرسة بنات</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- اختيار اللجنة -->
+            <div class="section">
+                <h2>🎯 اختيار اللجنة</h2>
+                <div class="committee-selector">
+                    <select id="committeeType">
+                        <option value="">اختر اللجنة أو الفريق</option>
+                        <option value="إدارية">اللجنة الإدارية للمدرسة</option>
+                        <option value="توجيه">لجنة التوجيه والإرشاد</option>
+                        <option value="تحصيل">لجنة التحصيل الدراسي</option>
+                        <option value="تميز">لجنة التميز</option>
+                        <option value="صندوق">فريق الصندوق المدرسي</option>
+                        <option value="أمن">فريق الأمن والسلامة</option>
+                        <option value="تربية_خاصة">فريق التربية الخاصة</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- تفاصيل الأعضاء -->
+            <div class="section" id="membersSection" style="display: none;">
+                <h2>👥 تفاصيل الأعضاء</h2>
+                <div id="membersContainer">
+                    <!-- سيتم إنشاء الأعضاء هنا بواسطة JavaScript -->
+                </div>
+            </div>
+
+            <!-- إعدادات إضافية -->
+            <div class="section">
+                <h2>⚙️ إعدادات إضافية</h2>
+                <div class="settings-grid">
+                    <div class="input-group">
+                        <label for="academicYear">العام الدراسي:</label>
+                        <input type="text" id="academicYear" value="1447هـ">
+                    </div>
+                    <div class="input-group">
+                        <label for="decisionDate">تاريخ القرار:</label>
+                        <input type="date" id="decisionDate">
+                    </div>
+                    <div class="input-group">
+                        <!-- 🔥 تغيير النص حسب الجنس -->
+                        <label for="directorName" id="directorLabel">اسم مدير المدرسة:</label>
+                        <input type="text" id="directorName" placeholder="اسم مدير المدرسة">
+                    </div>
+                </div>
+            </div>
+
+            <!-- زر الإنشاء -->
+            <div class="action-section">
+                <button id="previewBtn" class="preview-btn action-btn">👁️ معاينة القرار</button>
+            </div>
+
+            <!-- تنبيه الحفظ -->
+            <div class="warning-message">
+                <strong>تنبيه:</strong> يرجى حفظ النموذج أو طباعته قبل اختيار لجنة أخرى، حيث سيتم حذف البيانات المدخلة عند تغيير اللجنة.
+            </div>
+        </div>
+
+        <!-- معاينة القرار -->
+        <div class="preview-container" id="previewContainer" style="display: none;">
+            <div class="action-buttons">
+                <h2>📄 معاينة القرار</h2>
+                <button class="print-btn" onclick="printDocument()">🖨️ طباعة</button>
+                <button class="new-document-btn" onclick="createNewDocument()">📝 قرار جديد</button>
+            </div>
+            
+            <!-- ملاحظة حفظ PDF -->
+            <div class="pdf-note">
+                <span class="icon">💡</span>
+                <strong>تلميح:</strong> لحفظ الملف بصيغة PDF، اضغط على زر الطباعة واختر "حفظ كملف PDF" أو "Microsoft Print to PDF" من خيارات الطابعة
+            </div>
+            
+            <div class="pdf-preview">
+                <div id="pdfContent" class="pdf-content">
+                    <!-- سيتم إنشاء المحتوى هنا -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>جميع الحقوق محفوظة - متجر عروق الذهب للمنتجات الرقمية</strong></p>
+            <p>©GoldenVeinsHQ 2025 - الإصدار 1.6</p>
+            <p>للتواصل: <a href="https://goldenveinshq.carrd.co/" target="_blank">goldenveinshq.carrd.co</a></p>
+        </div>
+    </div>
+<script>
+    // قاعدة بيانات اللجان
+    const committees = {
+        "إدارية": {
+            name: "اللجنة الإدارية للمدرسة",
+            structure: {
+                chairman: "مدير المدرسة",
+                members: ["وكيل المدرسة", "الموجه الطلابي", "رائد النشاط", "معلم", "معلم", "معلم"],
+                secretary: "مساعد إداري"
+            }
+        },
+        "توجيه": {
+            name: "لجنة التوجيه والإرشاد",
+            structure: {
+                chairman: "وكيل المدرسة",
+                members: ["وكيل المدرسة", "معلم", "معلم", "معلم"],
+                secretary: "الموجه الطلابي"
+            }
+        },
+        "تحصيل": {
+            name: "لجنة التحصيل الدراسي",
+            structure: {
+                chairman: "مدير المدرسة",
+                vice_chairman: "وكيل المدرسة",
+                members: ["وكيل المدرسة", "رائد النشاط", "معلم", "معلم", "معلم"],
+                secretary: "الموجه الطلابي"
+            }
+        },
+        "تميز": {
+            name: "لجنة التميز",
+            structure: {
+                chairman: "مدير المدرسة",
+                members: ["وكيل المدرسة", "وكيل المدرسة", "الموجه الطلابي", "معلم", "معلم", "معلم"],
+                secretary: "رائد النشاط"
+            }
+        },
+        "صندوق": {
+            name: "فريق الصندوق المدرسي",
+            structure: {
+                chairman: "وكيل المدرسة",
+                members: ["الموجه الطلابي", "رائد النشاط", "معلم"],
+                secretary: "مساعد إداري"
+            }
+        },
+        "أمن": {
+            name: "فريق الأمن والسلامة بالمدرسة",
+            structure: {
+                chairman: "وكيل المدرسة",
+                members: ["الموجه الطلابي", "الموجه الصحي", "معلم", "معلم"]
+            }
+        },
+        "تربية_خاصة": {
+            name: "فريق التربية الخاصة",
+            structure: {
+                chairman: "وكيل المدرسة",
+                members: ["الموجه الطلابي", "الموجه الصحي", "معلم", "معلم"],
+                secretary: "معلم التربية الخاصة"
+            }
+        }
+    };
+
+    // قائمة الأدوار للبنين والبنات
+    const rolesByGender = {
+        boys: {
+            "مدير المدرسة": "مدير المدرسة",
+            "وكيل المدرسة": "وكيل المدرسة",
+            "وكيل الشؤون التعليمية": "وكيل الشؤون التعليمية",
+            "وكيل شؤون الطلاب": "وكيل شؤون الطلاب",
+            "وكيل الشؤون المدرسية": "وكيل الشؤون المدرسية",
+            "الموجه الطلابي": "الموجه الطلابي",
+            "رائد النشاط": "رائد النشاط",
+            "الموجه الصحي": "الموجه الصحي",
+            "معلم التربية الخاصة": "معلم التربية الخاصة",
+            "مساعد إداري": "مساعد إداري",
+            "معلم": "معلم",
+            "محضر المختبر": "محضر المختبر",
+            "أمين مصادر التعلم": "أمين مصادر التعلم"
+        },
+        girls: {
+            "مدير المدرسة": "مديرة المدرسة",
+            "وكيل المدرسة": "وكيلة المدرسة",
+            "وكيل الشؤون التعليمية": "وكيلة الشؤون التعليمية",
+            "وكيل شؤون الطلاب": "وكيلة شؤون الطالبات",
+            "وكيل الشؤون المدرسية": "وكيلة الشؤون المدرسية",
+            "الموجه الطلابي": "الموجهة الطلابية",
+            "رائد النشاط": "رائدة النشاط",
+            "الموجه الصحي": "الموجهة الصحية",
+            "معلم التربية الخاصة": "معلمة التربية الخاصة",
+            "مساعد إداري": "مساعدة إدارية",
+            "معلم": "معلمة",
+            "محضر المختبر": "محضرة المختبر",
+            "أمين مصادر التعلم": "أمينة مصادر التعلم"
+        }
+    };
+
+    // قائمة المهام المكلف بها
+    const taskRoles = [
+        "رئيس",
+        "نائب الرئيس",
+        "عضو",
+        "عضو ومقرر",
+        "مقرر"
+    ];
+
+    // متغيرات عامة
+    let currentCommittee = null;
+    let currentGender = 'boys';
+    let membersData = [];
+    let memberIdCounter = 0;
+
+    // تهيئة التطبيق
+    document.addEventListener('DOMContentLoaded', function() {
+        // إعداد التاريخ الحالي
+        const today = new Date();
+        const formattedDate = today.toISOString().split('T')[0];
+        document.getElementById('decisionDate').value = formattedDate;
+        
+        // تحديد الجنس الافتراضي
+        document.getElementById('boys').checked = true;
+        document.querySelector('.gender-option').classList.add('selected');
+        
+        // تحديث النصوص حسب الجنس الافتراضي
+        updateGenderTexts('boys');
+        
+        // ربط الأحداث
+        document.getElementById('committeeType').addEventListener('change', function() {
+            if (this.value !== currentCommittee && currentCommittee !== null) {
+                const confirmChange = confirm('سيتم حذف البيانات المدخلة. هل تريد المتابعة؟');
+                if (!confirmChange) {
+                    this.value = currentCommittee;
+                    return;
+                }
+            }
+            
+            currentCommittee = this.value;
+            if (currentCommittee) {
+                document.getElementById('membersSection').style.display = 'block';
+                generateMembersForm();
+            } else {
+                document.getElementById('membersSection').style.display = 'none';
+            }
+        });
+
+        document.getElementById('previewBtn').addEventListener('click', showPreview);
+    });
+
+    // 🔥 تحديث النصوص حسب الجنس
+    function updateGenderTexts(gender) {
+        const directorLabel = document.getElementById('directorLabel');
+        const directorInput = document.getElementById('directorName');
+        
+        if (gender === 'girls') {
+            directorLabel.textContent = 'اسم مديرة المدرسة:';
+            directorInput.placeholder = 'اسم مديرة المدرسة';
+        } else {
+            directorLabel.textContent = 'اسم مدير المدرسة:';
+            directorInput.placeholder = 'اسم مدير المدرسة';
+        }
+    }
+
+    // اختيار جنس المدرسة
+    function selectGender(gender) {
+        currentGender = gender;
+        
+        // تحديث الواجهة
+        document.querySelectorAll('.gender-option').forEach(option => {
+            option.classList.remove('selected');
+        });
+        
+        document.querySelector(`[onclick="selectGender('${gender}')"]`).classList.add('selected');
+        document.getElementById(gender).checked = true;
+        
+        // 🔥 تحديث النصوص حسب الجنس المختار
+        updateGenderTexts(gender);
+        
+        // إعادة إنشاء النموذج إذا كان هناك لجنة محددة
+        if (currentCommittee) {
+            generateMembersForm();
+        }
+    }
+
+    // إنشاء نموذج الأعضاء
+    function generateMembersForm() {
+        const container = document.getElementById('membersContainer');
+        container.innerHTML = '';
+        
+        const committee = committees[currentCommittee];
+        membersData = [];
+        memberIdCounter = 0;
+        
+        // إضافة الرئيس
+        if (committee.structure.chairman) {
+            const memberData = createMemberData(committee.structure.chairman, "رئيس");
+            membersData.push(memberData);
+            container.appendChild(createMemberRow(memberData, false));
+        }
+        
+        // إضافة نائب الرئيس
+        if (committee.structure.vice_chairman) {
+            const memberData = createMemberData(committee.structure.vice_chairman, "نائب الرئيس");
+            membersData.push(memberData);
+            container.appendChild(createMemberRow(memberData, false));
+        }
+        
+        // إضافة الأعضاء
+        committee.structure.members.forEach(member => {
+            const memberData = createMemberData(member, "عضو");
+            membersData.push(memberData);
+            container.appendChild(createMemberRow(memberData, true));
+        });
+        
+        // إضافة المقرر
+        if (committee.structure.secretary) {
+            const memberData = createMemberData(committee.structure.secretary, "مقرر");
+            membersData.push(memberData);
+            container.appendChild(createMemberRow(memberData, false));
+        }
+        
+        // إضافة زر إضافة عضو جديد
+        const addBtn = document.createElement('button');
+        addBtn.className = 'add-member-btn';
+        addBtn.innerHTML = '+';
+        addBtn.title = 'إضافة عضو جديد';
+        addBtn.onclick = addNewMember;
+        container.appendChild(addBtn);
+    }
+
+    // إنشاء بيانات العضو
+    function createMemberData(defaultRole, position) {
+        const genderizedRole = rolesByGender[currentGender][defaultRole] || defaultRole;
+        return {
+            id: memberIdCounter++,
+            name: "",
+            jobTitle: genderizedRole,
+            position: position,
+            isAddedByUser: false
+        };
+    }
+
+    // إنشاء صف العضو
+    function createMemberRow(memberData, canDelete = false) {
+        const row = document.createElement('div');
+        row.className = 'member-row';
+        row.dataset.memberId = memberData.id;
+        
+        // إنشاء قائمة الأدوار
+        const currentRoles = rolesByGender[currentGender];
+        let roleOptions = '';
+        Object.values(currentRoles).forEach(role => {
+            const selected = role === memberData.jobTitle ? 'selected' : '';
+            roleOptions += `<option value="${role}" ${selected}>${role}</option>`;
+        });
+        
+        // إنشاء قائمة المهام
+        let taskOptions = '';
+        taskRoles.forEach(task => {
+            const selected = task === memberData.position ? 'selected' : '';
+            taskOptions += `<option value="${task}" ${selected}>${task}</option>`;
+        });
+        
+        // تحديد ما إذا كان يمكن حذف العضو
+        const showDeleteBtn = canDelete || memberData.isAddedByUser;
+        
+        row.innerHTML = `
+            <input type="text" placeholder="اسم العضو" value="${memberData.name}" data-field="name">
+            <select data-field="jobTitle">
+                ${roleOptions}
+            </select>
+            <select data-field="position">
+                ${taskOptions}
+            </select>
+            <div class="role-label">${memberData.position}</div>
+            ${showDeleteBtn ? '<button class="remove-member-btn" onclick="removeMember(this)">×</button>' : ''}
+        `;
+        
+        // ربط الأحداث
+        row.querySelector('input[data-field="name"]').addEventListener('input', function() {
+            updateMemberData(memberData.id, 'name', this.value);
+        });
+        
+        row.querySelector('select[data-field="jobTitle"]').addEventListener('change', function() {
+            updateMemberData(memberData.id, 'jobTitle', this.value);
+        });
+        
+        row.querySelector('select[data-field="position"]').addEventListener('change', function() {
+            updateMemberData(memberData.id, 'position', this.value);
+            const roleLabel = row.querySelector('.role-label');
+            roleLabel.textContent = this.value;
+        });
+        
+        return row;
+    }
+
+    // تحديث بيانات العضو
+    function updateMemberData(memberId, field, value) {
+        const memberIndex = membersData.findIndex(m => m.id === memberId);
+        if (memberIndex !== -1) {
+            membersData[memberIndex][field] = value;
+        }
+    }
+
+    // إضافة عضو جديد
+    function addNewMember() {
+        const memberData = createMemberData("معلم", "عضو");
+        memberData.isAddedByUser = true;
+        membersData.push(memberData);
+        
+        const container = document.getElementById('membersContainer');
+        const addBtn = container.querySelector('.add-member-btn');
+        container.insertBefore(createMemberRow(memberData, true), addBtn);
+    }
+
+    // حذف عضو
+    function removeMember(button) {
+        const row = button.closest('.member-row');
+        const memberId = parseInt(row.dataset.memberId);
+        
+        membersData = membersData.filter(m => m.id !== memberId);
+        row.remove();
+    }
+
+    // عرض المعاينة
+    function showPreview() {
+        const schoolName = document.getElementById('schoolName').value;
+        const directorName = document.getElementById('directorName').value;
+        const selectedGender = document.querySelector('input[name="schoolGender"]:checked');
+        
+        if (!schoolName || !directorName || !currentCommittee || !selectedGender) {
+            alert('يرجى ملء جميع الحقول المطلوبة');
+            return;
+        }
+        
+        const emptyMembers = membersData.filter(member => !member.name);
+        if (emptyMembers.length > 0) {
+            alert('يرجى ملء أسماء جميع الأعضاء');
+            return;
+        }
+        
+        const previewContent = generatePreviewContent();
+        document.getElementById('pdfContent').innerHTML = previewContent;
+        document.getElementById('formContainer').style.display = 'none';
+        document.getElementById('previewContainer').style.display = 'block';
+        document.getElementById('previewContainer').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // إنشاء محتوى المعاينة
+    function generatePreviewContent() {
+        const schoolName = document.getElementById('schoolName').value;
+        const academicYear = document.getElementById('academicYear').value;
+        const decisionDate = document.getElementById('decisionDate').value;
+        const directorName = document.getElementById('directorName').value;
+        const committeeName = committees[currentCommittee].name;
+        
+        const hijriDate = convertToHijri(decisionDate);
+        
+        const directorTitle = currentGender === 'girls' ? 'مديرة المدرسة' : 'مدير المدرسة';
+        const directorApproval = currentGender === 'girls' ? 'يعتمد مديرة المدرسة' : 'يعتمد مدير المدرسة';
+        const permissionText = currentGender === 'girls' ? 'الممنوحة لمديرة المدرسة' : 'الممنوحة لمدير المدرسة';
+        
+        let tableRows = '';
+        membersData.forEach((member, index) => {
+            tableRows += `
+                <tr>
+                    <td>${member.name}</td>
+                    <td>${member.jobTitle}</td>
+                    <td>${member.position}</td>
+                    <td style="width: 45mm; height: 12mm;"></td>
+                </tr>
+            `;
+        });
+        
+        return `
+            <div class="official-template">
+                <div class="committee-name-area">
+                    ${committeeName}
+                </div>
+                
+                <div class="document-content">
+                    <div class="legal-text">
+                        استناداً على الصلاحية رقم (1) الواردة في دليل الصلاحيات ${permissionText} بالقرار الوزاري رقم 37617168 وتاريخ 1437/4/1هـ. واستناداً إلى ما ورد في الدليل التنظيمي لمدارس التعليم للعام 1442هـ فقد تقرر ما يلي:
+                    </div>
+                    
+                    <div class="decision-text">
+                        اعتماد تشكيل ${committeeName} للعام الدراسي ${academicYear} وفقاً للجدول التالي:
+                    </div>
+                    
+                    <table class="members-table">
+                        <thead>
+                            <tr>
+                                <th>الاسم</th>
+                                <th>الوصف الوظيفي</th>
+                                <th>المهمة المكلف بها</th>
+                                <th>التوقيع</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${tableRows}
+                        </tbody>
+                    </table>
+                    
+                    <div class="director-approval">
+                        <table>
+                            <tr>
+                                <td style="width: 25%;">${directorApproval}</td>
+                                <td style="width: 50%;">${directorName}</td>
+                                <td style="width: 25%;"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 10mm; font-size: 14px; color: #004956; font-weight: 600;">
+                        التاريخ: ${hijriDate}
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    // إنشاء قرار جديد
+    function createNewDocument() {
+        document.getElementById('formContainer').style.display = 'block';
+        document.getElementById('previewContainer').style.display = 'none';
+        document.getElementById('formContainer').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // تحويل تقريبي للتاريخ الهجري
+    function convertToHijri(gregorianDate) {
+        if (!gregorianDate) return "";
+        
+        const date = new Date(gregorianDate);
+        const day = date.getDate();
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
+        
+        const hijriYear = year - 579;
+        
+        const hijriMonths = [
+            "محرم", "صفر", "ربيع الأول", "ربيع الآخر", "جمادى الأولى", "جمادى الآخرة",
+            "رجب", "شعبان", "رمضان", "شوال", "ذو القعدة", "ذو الحجة"
+        ];
+        
+        return `${day}/${hijriMonths[month - 1]}/${hijriYear}هـ`;
+    }
+
+    // 🔥 دالة طباعة محسنة مع تعيين اسم الملف
+    function printDocument() {
+        if (!document.getElementById('pdfContent').innerHTML) {
+            alert('يرجى إنشاء المعاينة أولاً');
+            return;
+        }
+
+        // 🔥 تحديد اسم الملف حسب اللجنة
+        const committeeName = committees[currentCommittee].name;
+        const schoolName = document.getElementById('schoolName').value;
+        const academicYear = document.getElementById('academicYear').value;
+        const fileName = `${committeeName}_${schoolName}_${academicYear}`;
+
+        // 🔥 تعيين عنوان الصفحة (اسم الملف الافتراضي)
+        const originalTitle = document.title;
+        document.title = fileName;
+
+        // إخفاء العناصر غير المطلوبة للطباعة
+        const elementsToHide = [
+            document.querySelector('.action-buttons'),
+            document.querySelector('header'),
+            document.querySelector('.form-container'),
+            document.querySelector('.footer'),
+            document.querySelector('.pdf-note')
+        ];
+
+        elementsToHide.forEach(element => {
+            if (element) {
+                element.style.display = 'none';
+            }
+        });
+
+        // إضافة أنماط الطباعة المؤقتة
+        const tempPrintStyle = document.createElement('style');
+        tempPrintStyle.id = 'temp-print-style';
+        tempPrintStyle.textContent = `
+            @media print {
+                body * {
+                    visibility: hidden;
+                }
+                
+                .preview-container,
+                .preview-container * {
+                    visibility: visible;
+                }
+                
+                .preview-container {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    margin: 0;
+                    padding: 0;
+                    background: white;
+                }
+                
+                .pdf-content {
+                    width: 100% !important;
+                    height: 100vh !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    box-shadow: none !important;
+                }
+                
+                .official-template {
+                    background-image: url('template.png') !important;
+                    background-size: 100% 100% !important;
+                    background-repeat: no-repeat !important;
+                    -webkit-print-color-adjust: exact !important;
+                    print-color-adjust: exact !important;
+                }
+                
+                .members-table,
+                .members-table th,
+                .members-table td {
+                    border-radius: 0 !important;
+                }
+                
+                /* 🔥 ضمان ظهور لون التظليل الجديد */
+                .members-table tr:nth-child(even) {
+                    background: #E8E8E8 !important;
+                    -webkit-print-color-adjust: exact !important;
+                    print-color-adjust: exact !important;
+                }
+                
+                .members-table tr:nth-child(odd) {
+                    background: #ffffff !important;
+                    -webkit-print-color-adjust: exact !important;
+                    print-color-adjust: exact !important;
+                }
+            }
+        `;
+        document.head.appendChild(tempPrintStyle);
+
+        // تنفيذ الطباعة
+        setTimeout(() => {
+            window.print();
+            
+            // إزالة الأنماط المؤقتة وإعادة إظهار العناصر
+            setTimeout(() => {
+                document.head.removeChild(tempPrintStyle);
+                document.title = originalTitle; // إعادة العنوان الأصلي
+                
+                elementsToHide.forEach(element => {
+                    if (element) {
+                        element.style.display = '';
+                    }
+                });
+            }, 1000);
+        }, 100);
+    }
+</script>
+</body>
+</html>
